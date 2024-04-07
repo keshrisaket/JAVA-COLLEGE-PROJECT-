@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#E91E63">
+
+        <LinearLayout
+            android:id="@+id/linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:padding="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:text="ADD COMPUTER laboratory"
+                android:textSize="25sp"
+                android:textAlignment="center"/>
+
+            <EditText
+                android:id="@+id/labnumber"
+                android:layout_marginLeft="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="number"
+                android:hint="LAB NUMBER"/>
+
+            <EditText
+                android:id="@+id/labname"
+                android:layout_marginLeft="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="text"
+                android:hint="LAB NAME"/>
+
+
+            <EditText
+                android:id="@+id/labid"
+                android:layout_marginLeft="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="text"
+                android:hint="LAB ID "/>
+
+            <EditText
+                android:id="@+id/labtotlaseat"
+                android:layout_marginLeft="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:inputType="number"
+                android:hint="TOTAL NO OF SEATS"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/cancelitem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:text="cancel"
+                    android:background="#41D5E8"
+                    android:elevation="10dp"
+                    android:textStyle="bold"
+                    android:layout_margin="20sp"
+                    android:layout_gravity="end"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/additem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textSize="20sp"
+                android:elevation="10dp"
+                android:text="add"
+                android:background="#41D5E8"
+                android:textStyle="bold"
+                android:layout_margin="20sp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
