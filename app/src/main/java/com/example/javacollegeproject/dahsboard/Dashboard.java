@@ -60,6 +60,14 @@ public class Dashboard extends AppCompatActivity {
                 EditText editlabid=dialog.findViewById(R.id.labid);
                 EditText editlabtotlaseat=dialog.findViewById(R.id.labtotlaseat);
                 AppCompatButton btnadd =dialog.findViewById(R.id.additem);
+                AppCompatButton btncancle =dialog.findViewById(R.id.cancelitem);
+
+                btncancle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
 
                 btnadd.setOnClickListener(new View.OnClickListener() {
                     @Override

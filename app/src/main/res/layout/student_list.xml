@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="15dp"
-        app:cardBackgroundColor="#37D9ED"
+        app:cardBackgroundColor="#E91E63"
         app:cardUseCompatPadding="true"
         app:cardElevation="8dp">
 
@@ -23,28 +23,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/lab_no"
+                android:id="@+id/seatno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LAB : 1 "
+                android:text="SEAT : 1 "
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/lab_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="LAB ID ="
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textAllCaps="true"/>
 
 
             <TextView
-                android:id="@+id/lab_name"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -56,11 +46,11 @@
 
 
             <TextView
-                android:id="@+id/lab_totalseat"
+                android:id="@+id/gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="total seat ="
+                android:text="sex ="
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -68,34 +58,42 @@
 
 
             <TextView
-                android:id="@+id/lab_vacantseat"
+                android:id="@+id/roll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="VACENT SEAT  ="
+                android:text="roll  ="
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textAllCaps="true"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/details"
-                android:layout_marginTop="23dp"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/course"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E91E63"
-                android:text="DETAILS"
-                android:textColor="@color/black"
-                android:textAlignment="center"
-                android:textAllCaps="true"
+                android:layout_marginTop="5dp"
+                android:text="COURSE  ="
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textColor="@color/black"
+                android:textAllCaps="true"/>
 
 
-
+            <TextView
+                android:id="@+id/college"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="COLLEGE = "
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textAllCaps="true"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 
 
 

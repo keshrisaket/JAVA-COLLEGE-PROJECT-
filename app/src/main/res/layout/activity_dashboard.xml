@@ -31,11 +31,25 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/texttitle"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="COMPUTER laboratory's"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/texttitle"
         android:id="@+id/recyckerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"/>
+        android:layout_marginTop="20dp"/>
 
 
 </RelativeLayout>

@@ -1,21 +1,26 @@
 package com.example.javacollegeproject.dahsboard;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.javacollegeproject.R;
 import com.example.javacollegeproject.lab.ModalLab;
+import com.example.javacollegeproject.lab.lab;
 
 import java.util.ArrayList;
 
@@ -46,6 +51,20 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
         holder.lab_name.setText("NAME  = "+lab_list.get(position).getLab_name());
         holder.lab_totalseat.setText(String.valueOf("TOTAL NO OF SEATS = "+lab_list.get(position).getTotal_seat()));
         holder.lab_vacentseat.setText(String.valueOf("TOTAL NO OF VACENT SEAT = "+lab_list.get(position).getVacant_seat()));
+        holder.details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get the context from the holder's itemView
+                Context context = holder.itemView.getContext();
+
+                // Start the lab activity with intent
+                Intent intent = new Intent(context,lab.class);
+                intent.putExtra("labnumber",lab_list.get(position).getLab_num());
+                intent.putExtra("totalnoofstudent",lab_list.get(position).getTotal_seat());
+                context.startActivity(intent);
+            }
+        });
+
 
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -83,8 +102,44 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
                 dialog.setContentView(R.layout.add_updatelayout);
 
 
+                TextView title=dialog.findViewById(R.id.title);
+                EditText editlabname=dialog.findViewById(R.id.labname);
+                EditText editlabnumber=dialog.findViewById(R.id.labnumber);
+                EditText editlabid=dialog.findViewById(R.id.labid);
+                EditText editlabtotlaseat=dialog.findViewById(R.id.labtotlaseat);
+                AppCompatButton btnadd =dialog.findViewById(R.id.additem);
+                AppCompatButton btncancle=dialog.findViewById(R.id.cancelitem);
+
+                btncancle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                title.setText("UPDATE COMPUTER LABORATORY");
+                editlabid.setText(lab_list.get(position).getLab_id());
+                editlabname.setText(lab_list.get(position).getLab_name());
+                editlabnumber.setText(String.valueOf(lab_list.get(position).getLab_num()));
+                editlabtotlaseat.setText(String.valueOf(lab_list.get(position).getTotal_seat()));
+
+                btnadd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final  String name=editlabname.getText().toString().trim();
+                        final String  id=editlabid.getText().toString().trim();
+                        int number= Integer.parseInt(editlabnumber.getText().toString().trim());
+                        int totalnumberofseat= Integer.parseInt(editlabtotlaseat.getText().toString().trim());
+
+                        lab_list.set(position,new ModalLab(number,name,id,totalnumberofseat,totalnumberofseat));
+                        notifyItemChanged(position);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
+
 
 
 }
@@ -97,6 +152,8 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView lab_no,lab_id,lab_name,lab_totalseat,lab_vacentseat;
+
+        AppCompatButton details;
        CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,6 +163,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
             lab_totalseat=itemView.findViewById(R.id.lab_totalseat);
             lab_vacentseat=itemView.findViewById(R.id.lab_vacantseat);
             cardView=itemView.findViewById(R.id.cardView);
+            details=itemView.findViewById(R.id.details);
         }
     }
 }
