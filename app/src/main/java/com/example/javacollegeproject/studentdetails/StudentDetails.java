@@ -3,10 +3,11 @@ package com.example.javacollegeproject.studentdetails;
 public class StudentDetails extends Human {
 
     private String college;
-    private  float roll;
+    private  int roll;
     private  String course ;
 
-    public StudentDetails(String name, String gender, String college, float roll, String course) {
+
+    public StudentDetails(String name, String gender, String college, int roll, String course) {
         super(name, gender);
         this.college = college;
         this.roll = roll;
@@ -28,11 +29,11 @@ public class StudentDetails extends Human {
         this.college = college;
     }
 
-    public float getRoll() {
+    public int getRoll() {
         return roll;
     }
 
-    public void setRoll(float roll) {
+    public void setRoll(int roll) {
         this.roll = roll;
     }
 

@@ -1,30 +1,31 @@
 package com.example.javacollegeproject.dahsboard;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.javacollegeproject.IsValidEntry;
 import com.example.javacollegeproject.R;
-import com.example.javacollegeproject.lab.ModalLab;
 import com.example.javacollegeproject.lab.lab;
+
 
 import java.util.ArrayList;
 
-public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
+public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> implements IsValidEntry {
 
     Context context;
     ArrayList<ModalLab> lab_list;
@@ -50,7 +51,7 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
         holder.lab_id.setText("LAB ID = "+lab_list.get(position).getLab_id());
         holder.lab_name.setText("NAME  = "+lab_list.get(position).getLab_name());
         holder.lab_totalseat.setText(String.valueOf("TOTAL NO OF SEATS = "+lab_list.get(position).getTotal_seat()));
-        holder.lab_vacentseat.setText(String.valueOf("TOTAL NO OF VACENT SEAT = "+lab_list.get(position).getVacant_seat()));
+        holder.lab_vacentseat.setText(String.valueOf("TOTAL NO OF VACANT SEAT = "+lab_list.get(position).getVacant_seat()));
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,8 +60,14 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
 
                 // Start the lab activity with intent
                 Intent intent = new Intent(context,lab.class);
-                intent.putExtra("labnumber",lab_list.get(position).getLab_num());
-                intent.putExtra("totalnoofstudent",lab_list.get(position).getTotal_seat());
+
+                int labno=lab_list.get(position).getLab_num();
+                int labtotalnoofseat=lab_list.get(position).getTotal_seat();
+                intent.putExtra("labnumber",labno);
+                intent.putExtra("totalnoofstudent",labtotalnoofseat);
+                intent.putExtra("position",position);
+                System.out.println(position);
+
                 context.startActivity(intent);
             }
         });
@@ -126,12 +133,51 @@ public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder> {
                 btnadd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final  String name=editlabname.getText().toString().trim();
-                        final String  id=editlabid.getText().toString().trim();
-                        int number= Integer.parseInt(editlabnumber.getText().toString().trim());
-                        int totalnumberofseat= Integer.parseInt(editlabtotlaseat.getText().toString().trim());
+                        final String name = editlabname.getText().toString().trim();
+                        final String id = editlabid.getText().toString().trim();
+                        String numberString = editlabnumber.getText().toString().trim();
+                        String totalnumberofseatString = editlabtotlaseat.getText().toString().trim();
 
-                        lab_list.set(position,new ModalLab(number,name,id,totalnumberofseat,totalnumberofseat));
+                        if (numberString.isEmpty() || totalnumberofseatString.isEmpty()) {
+                            Toast.makeText(context, "Enter valid LAB NUMBER and TOTAL NUMBER OF SEATS", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        int number;
+                        int totalnumberofseat;
+
+                        try {
+                            number = Integer.parseInt(numberString);
+                            totalnumberofseat = Integer.parseInt(totalnumberofseatString);
+                        } catch (NumberFormatException e) {
+                            Toast.makeText(context, "Enter valid LAB NUMBER and TOTAL NUMBER OF SEATS", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        String numref = String.valueOf(number);
+                        String totalnoref = String.valueOf(totalnumberofseat);
+
+                        if (numref.length() > 8) {
+                            Toast.makeText(context, "Enter a LAB NUMBER with a maximum of 8 digits", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (id.isEmpty()) {
+                            Toast.makeText(context, "Enter the valid LAB ID", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (name.isEmpty()) {
+                            Toast.makeText(context, "Enter the valid LAB NAME", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (totalnoref.length() > 8) {
+                            Toast.makeText(context, "Enter a valid TOTAL NUMBER OF SEATS with a maximum of 8 digits", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        lab_list.set(position, new ModalLab(number, name, id, totalnumberofseat, totalnumberofseat));
                         notifyItemChanged(position);
                         dialog.dismiss();
                     }

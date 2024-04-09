@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:inputType="text"
-                android:hint="NAME"/>
+                android:hint="NAME : SAKETKUMAR"/>
 
             <EditText
                 android:id="@+id/sex"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:inputType="text"
-                android:hint="SEX"/>
+                android:hint="SEX : MALE/FEMALE"/>
 
 
             <EditText
@@ -71,6 +71,7 @@
                 android:textSize="20sp"
                 android:inputType="text"
                 android:hint="COURSE"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

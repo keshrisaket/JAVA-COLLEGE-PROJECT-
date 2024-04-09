@@ -1,6 +1,6 @@
-package com.example.javacollegeproject.lab;
+package com.example.javacollegeproject.dahsboard;
 
-public class ModalLab {
+class ModalLab {
     private int lab_num;
     private String lab_name;
     private String lab_id;
